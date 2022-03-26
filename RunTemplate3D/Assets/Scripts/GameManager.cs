@@ -9,12 +9,19 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Button startButton;
+    public Button nextStageBtn;
+    public Text stageTxt;
     public Text scoreText;
     public Text successText;
     public Text failText;
 
     // define the character
     public GameObject character;
+
+    // stages
+    public List<GameObject> levelStages = new List<GameObject>();
+    public int stage = 0;
+    public GameObject currentLevel;
 
     private void Awake()
     {
@@ -27,7 +34,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        nextStage();
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void gameState()
     {
-        character.GetComponent<Character>().setAnim();
+        character.GetComponent<Character>().startRun();
     }
 
     public void levelFail()
@@ -47,6 +54,22 @@ public class GameManager : MonoBehaviour
     }
     public void levelSuccess()
     {
+        stage++;
+        if(stage == levelStages.Count)
+        {
+            stage = 0;
+        }
         successText.gameObject.SetActive(true);
+        nextStageBtn.gameObject.SetActive(true);
+    }
+    public void nextStage()
+    {
+        nextStageBtn.gameObject.SetActive(false);
+        currentLevel = levelStages[stage];
+        currentLevel = Instantiate(currentLevel, new Vector3(0, 0, 0), Quaternion.identity);
+        stageTxt.text = "Stage - " + (stage + 1);
+        character.GetComponent<Character>().stageComp(new Vector3(0,0,0));
+        successText.gameObject.SetActive(false);
+        nextStageBtn.gameObject.SetActive(false);
     }
 }

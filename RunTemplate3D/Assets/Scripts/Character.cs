@@ -5,7 +5,6 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     // char check run or idle anim
-    public bool run=false;
     public Animator animRun;
     public float charSpeed;
     public int currentScore=0;
@@ -23,7 +22,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (run)
+        if (animRun.GetBool("Run"))
         {
             characterMovement();
         }
@@ -47,10 +46,9 @@ public class Character : MonoBehaviour
 
 
     // char anim completed
-    public void setAnim()
+    public void startRun()
     {
-        run = !run;
-        animRun.SetBool("Run", run);
+        animRun.SetBool("Run", !(animRun.GetBool("Run")));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,15 +63,20 @@ public class Character : MonoBehaviour
         // Obstacle Object
         if (other.GetComponent<Obstacle>())
         {
-            setAnim();
+            startRun();
             GameManager.Instance.levelFail();
             other.transform.gameObject.SetActive(false);
         }
         //Obstacle Object
         if (other.GetComponent<StageCompleted>())
         {
-            setAnim();
+            startRun();
             GameManager.Instance.levelSuccess();
         }
+    }
+
+    public void stageComp(Vector3 startPos)
+    {
+        this.transform.position = startPos;
     }
 }
