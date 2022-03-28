@@ -23,6 +23,41 @@ public class GameManager : MonoBehaviour
     public int stage = 0;
     public GameObject currentLevel;
 
+    // define stackList
+    [Header("Stack List Variables")]
+    public float stackObjectsYOffset;
+    public float stackObjectsZOffset;
+    public float stackObjectSpeed;
+    public List<GameObject> stackList = new List<GameObject>();
+
+    public void stackListMovement()
+    {
+        if (stackList.Count == 0)
+        {
+            // list is empty
+            return;
+        }
+        for (int i = 0; i < stackList.Count; i++)
+        {
+            // my first stack object
+            if (i == 0)
+            {
+                Vector3 tempPos = character.transform.position;
+                tempPos.y += stackObjectsYOffset;
+                tempPos.z += stackObjectsZOffset;
+                stackList[i].transform.position = Vector3.Lerp(stackList[i].transform.position, tempPos, Time.deltaTime * stackObjectSpeed);
+
+            }
+            else
+            {
+                Vector3 tempPos = stackList[i - 1].transform.position;
+                tempPos.y = stackObjectsYOffset;
+                tempPos.z += stackObjectsZOffset;
+                stackList[i].transform.position = Vector3.Lerp(stackList[i].transform.position, tempPos, Time.deltaTime * stackObjectSpeed);
+            }
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -40,7 +75,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        stackListMovement();
     }
 
     public void gameState()
@@ -64,6 +99,10 @@ public class GameManager : MonoBehaviour
     }
     public void nextStage()
     {
+        // clear list
+        stackList.Clear();
+        Destroy(currentLevel);
+        // btn off
         nextStageBtn.gameObject.SetActive(false);
         currentLevel = levelStages[stage];
         currentLevel = Instantiate(currentLevel, new Vector3(0, 0, 0), Quaternion.identity);

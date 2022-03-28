@@ -1447,6 +1447,10 @@ MonoBehaviour:
   - {fileID: 2159126953123015207, guid: c5bcc5b3e7ba1794aaaa30ec170316a7, type: 3}
   stage: 0
   currentLevel: {fileID: 0}
+  stackObjectsYOffset: 0.5
+  stackObjectsZOffset: 1.5
+  stackObjectSpeed: 8
+  stackList: []
 --- !u!1 &1917378344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,10 +2573,6 @@ MonoBehaviour:
   animRun: {fileID: 0}
   charSpeed: 2
   currentScore: 0
-  stackObjectsYOffset: 0.5
-  stackObjectsZOffset: 1.5
-  stackObjectSpeed: 5
-  stackList: []
 --- !u!4 &9213991864165673862
 Transform:
   m_ObjectHideFlags: 0

@@ -9,12 +9,6 @@ public class Character : MonoBehaviour
     public float charSpeed;
     public int currentScore=0;
 
-    [Header("Stack List Variables")]
-    public float stackObjectsYOffset;
-    public float stackObjectsZOffset;
-    public float stackObjectSpeed;
-    public List<GameObject> stackList = new List<GameObject>();
-
     private void Awake()
     {
         animRun = GetComponent<Animator>();
@@ -33,7 +27,10 @@ public class Character : MonoBehaviour
             characterMovement();
         }
 
-        stackListMovement();
+        if ("Your Score: "+currentScore != GameManager.Instance.scoreText.text)
+        {
+            GameManager.Instance.scoreText.text = "Your Score: " + currentScore;
+        }
     }
 
     // char movement
@@ -64,10 +61,11 @@ public class Character : MonoBehaviour
         // Collectable Object
         if (other.GetComponent<Collectable>())
         {
+            other.GetComponent<Collectable>().addList = false;
             currentScore += other.GetComponent<Collectable>().score;
             GameManager.Instance.scoreText.text = "Your Score: " + currentScore;
             // must fix
-            stackList.Add(other.gameObject);
+            GameManager.Instance.stackList.Add(other.gameObject);
             //other.transform.gameObject.SetActive(false);
         }
         // Obstacle Object
@@ -82,34 +80,6 @@ public class Character : MonoBehaviour
         {
             startRun();
             GameManager.Instance.levelSuccess();
-        }
-    }
-
-    public void stackListMovement()
-    {
-        if (stackList.Count == 0)
-        {
-            // list is empty
-            return;
-        }
-        for (int i = 0; i < stackList.Count; i++)
-        {
-            // my first stack object
-            if (i == 0)
-            {
-                Vector3 tempPos = this.transform.position;
-                tempPos.y += stackObjectsYOffset;
-                tempPos.z -= stackObjectsZOffset;
-                stackList[i].transform.position = Vector3.Lerp(stackList[i].transform.position, tempPos, Time.deltaTime * stackObjectSpeed);
-
-            }
-            else
-            {
-                Vector3 tempPos = stackList[i - 1].transform.position;
-                tempPos.y = stackObjectsYOffset;
-                tempPos.z -= stackObjectsZOffset;
-                stackList[i].transform.position = Vector3.Lerp(stackList[i].transform.position, tempPos, Time.deltaTime * stackObjectSpeed);
-            }
         }
     }
 
