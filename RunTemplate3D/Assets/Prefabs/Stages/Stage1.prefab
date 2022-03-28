@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126952555205710
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126953114011758
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126953123015207
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126953379427345
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126953428102355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126953865842940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126954175646676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126954193291578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
 --- !u!1 &2159126954248935326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,3 +1746,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+  currentChar: {fileID: 0}
